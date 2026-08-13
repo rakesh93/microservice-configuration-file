@@ -1,7 +1,4 @@
 spring:
-  application:
-    name: TRANSACTION-SERVICE
-
   datasource:
     url: jdbc:postgresql://localhost:5432/userservice
     username: postgres
@@ -17,7 +14,7 @@ spring:
 
 server:
   port: 8084
-  
+
 management:
   endpoints:
     web:
