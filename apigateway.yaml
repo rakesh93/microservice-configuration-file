@@ -16,22 +16,22 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/users/**
+            - Path=/userservice/**
 
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/auth/**
+            - Path=/authservice/**
 
         - id: account-service
           uri: lb://ACCOUNT-SERVICE
           predicates:
-            - Path=/accounts/**
+            - Path=/accountservice/**
 
         - id: transaction-service
           uri: lb://TRANSACTION-SERVICE
           predicates:
-            - Path=/transactions/**
+            - Path=/transactionservice/**
 
         - id: notification-service
           uri: lb://NOTIFICATION-SERVICE
