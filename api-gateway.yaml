@@ -7,27 +7,35 @@ spring:
 
   cloud:
     gateway:
-      routes:
+      server:
+        webflux:
+          routes:
 
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/userservice/**
+            - id: user-service
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/userservice/**
 
-        - id: auth-service
-          uri: lb://AUTH-SERVICE
-          predicates:
-            - Path=/authservice/**
+            - id: auth-service
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/authservice/**
 
-        - id: account-service
-          uri: lb://ACCOUNT-SERVICE
-          predicates:
-            - Path=/accountservice/**
+            - id: account-service
+              uri: lb://ACCOUNT-SERVICE
+              predicates:
+                - Path=/accountservice/**
 
-        - id: transaction-service
-          uri: lb://TRANSACTION-SERVICE
-          predicates:
-            - Path=/transactionservice/**
+            - id: transaction-service
+              uri: lb://TRANSACTION-SERVICE
+              predicates:
+                - Path=/transactionservice/**
+
+ui:
+  allowed-origin: http://localhost:3000
+
+jwt:
+  secret: qF6WQ9h+9H8QK9g6M8qK6r3w6q1v3q4M2sJ2QxY7V2Q=
 
 eureka:
   client:
@@ -35,6 +43,3 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
-
-jwt:
-  secret: qF6WQ9h+9H8QK9g6M8qK6r3w6q1v3q4M2sJ2QxY7V2Q=
