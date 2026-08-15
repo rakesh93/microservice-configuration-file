@@ -1,34 +1,48 @@
 server:
   port: 9090
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: true
-    fetch-registry: true
-
 spring:
+  application:
+    name: API-GATEWAY
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8082
+
   cloud:
     gateway:
       routes:
 
+        # User Service
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/userservice/**
 
+        # Auth Service
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
             - Path=/authservice/**
 
+        # Account Service
         - id: account-service
           uri: lb://ACCOUNT-SERVICE
           predicates:
             - Path=/accountservice/**
 
+        # Transaction Service
         - id: transaction-service
           uri: lb://TRANSACTION-SERVICE
           predicates:
             - Path=/transactionservice/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+    register-with-eureka: true
+    fetch-registry: true
