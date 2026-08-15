@@ -5,35 +5,25 @@ spring:
   application:
     name: API-GATEWAY
 
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8082
-
   cloud:
     gateway:
       routes:
 
-        # User Service
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/userservice/**
 
-        # Auth Service
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
             - Path=/authservice/**
 
-        # Account Service
         - id: account-service
           uri: lb://ACCOUNT-SERVICE
           predicates:
             - Path=/accountservice/**
 
-        # Transaction Service
         - id: transaction-service
           uri: lb://TRANSACTION-SERVICE
           predicates:
@@ -43,6 +33,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
     register-with-eureka: true
     fetch-registry: true
+
+jwt:
+  secret: qF6WQ9h+9H8QK9g6M8qK6r3w6q1v3q4M2sJ2QxY7V2Q=
+  expiration: 3600000
